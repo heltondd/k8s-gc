@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: k8s-gc
+  labels:
+    app: k8s-gc
+spec:
+  selector:
+    matchLabels:
+      name: k8s-gc
+  template:
+    metadata:
+      labels:
+        name: k8s-gc
+    spec:
+      containers:
+      - name: k8s-gc
+        image: heltondd/k8s-gc
+        volumeMounts:
+        - name: docker-socket
+          mountPath: /var/run/docker.sock
+          readOnly: false
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: docker-socket
+        hostPath:
+          path: /var/run/docker.sock
