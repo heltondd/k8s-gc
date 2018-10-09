@@ -20,7 +20,6 @@ spec:
         - name: docker-socket
           mountPath: /var/run/docker.sock
           readOnly: false
-      terminationGracePeriodSeconds: 30
       volumes:
       - name: docker-socket
         hostPath:
