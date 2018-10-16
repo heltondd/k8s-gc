@@ -16,6 +16,11 @@ spec:
       containers:
       - name: k8s-gc
         image: heltondd/k8s-gc
+        env:
+          - name: INTERVAL
+            value: "86400"
+          - name: UNTIL
+            value: "24h"
         volumeMounts:
         - name: docker-socket
           mountPath: /var/run/docker.sock
